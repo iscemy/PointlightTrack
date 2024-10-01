@@ -1,0 +1,8 @@
+[
+{
+  "directory": "/home/cem/Projects/application/build",
+  "command": "/usr/bin/c++   -g -o CMakeFiles/Tracker.dir/main.cpp.o -c /home/cem/Projects/application/main.cpp",
+  "file": "/home/cem/Projects/application/main.cpp",
+  "output": "CMakeFiles/Tracker.dir/main.cpp.o"
+}
+]

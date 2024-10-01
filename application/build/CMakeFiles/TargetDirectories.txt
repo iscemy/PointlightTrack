@@ -1,0 +1,3 @@
+/home/cem/Projects/application/build/CMakeFiles/Tracker.dir
+/home/cem/Projects/application/build/CMakeFiles/edit_cache.dir
+/home/cem/Projects/application/build/CMakeFiles/rebuild_cache.dir
