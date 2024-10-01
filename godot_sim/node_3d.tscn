@@ -1,0 +1,265 @@
+[gd_scene load_steps=11 format=3 uid="uid://cyf7me4ag2nxe"]
+
+[ext_resource type="Script" path="res://track_point.gd" id="2_s0014"]
+[ext_resource type="Script" path="res://CameraFrameGetter.gd" id="3_qry1m"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_m14d0"]
+sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+ground_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+
+[sub_resource type="Sky" id="Sky_wpjad"]
+sky_material = SubResource("ProceduralSkyMaterial_m14d0")
+
+[sub_resource type="Environment" id="Environment_f6oeb"]
+background_mode = 2
+sky = SubResource("Sky_wpjad")
+tonemap_mode = 2
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ba6xi"]
+transparency = 1
+vertex_color_use_as_albedo = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_efhyh"]
+transparency = 1
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1p5wf"]
+transparency = 1
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0t5m0"]
+albedo_color = Color(0.52549, 0.584314, 0.380392, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ww4nr"]
+vertex_color_use_as_albedo = true
+albedo_color = Color(0.52549, 0.584314, 0.380392, 1)
+
+[node name="Node3D" type="Node3D"]
+transform = Transform3D(0.999999, -8.59166e-05, -0.00116292, 8.50428e-05, 1, -0.000768029, 0.00116298, 0.000767932, 0.999999, 0, 0, 0)
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_f6oeb")
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Control"]
+layout_mode = 0
+offset_left = -1.0
+offset_top = -2.0
+offset_right = 39.0
+offset_bottom = 38.0
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="Control/HBoxContainer"]
+layout_mode = 2
+
+[node name="cam1" type="SubViewport" parent="Control/HBoxContainer/SubViewportContainer"]
+unique_name_in_owner = true
+handle_input_locally = false
+render_target_clear_mode = 2
+render_target_update_mode = 4
+
+[node name="Camera3D" type="Camera3D" parent="Control/HBoxContainer/SubViewportContainer/cam1"]
+transform = Transform3D(-4.37114e-08, -0.707106, 0.707107, 0, 0.707106, 0.707107, -1, 3.09086e-08, -3.09086e-08, 2, 1, 0.001)
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="Control"]
+layout_mode = 0
+offset_top = 517.0
+offset_right = 40.0
+offset_bottom = 557.0
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="Control/HBoxContainer2"]
+layout_mode = 2
+
+[node name="cam2" type="SubViewport" parent="Control/HBoxContainer2/SubViewportContainer"]
+unique_name_in_owner = true
+handle_input_locally = false
+render_target_clear_mode = 2
+render_target_update_mode = 4
+
+[node name="Camera3D" type="Camera3D" parent="Control/HBoxContainer2/SubViewportContainer/cam2"]
+transform = Transform3D(-4.37114e-08, 0.707107, -0.707107, 0, 0.707107, 0.707107, 1, 3.09086e-08, -3.09086e-08, -1.5, 1, 0.001)
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="Control"]
+layout_mode = 0
+offset_left = 526.0
+offset_right = 566.0
+offset_bottom = 40.0
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="Control/HBoxContainer3"]
+layout_mode = 2
+
+[node name="cam3" type="SubViewport" parent="Control/HBoxContainer3/SubViewportContainer"]
+unique_name_in_owner = true
+handle_input_locally = false
+render_target_clear_mode = 2
+render_target_update_mode = 4
+
+[node name="Camera3D" type="Camera3D" parent="Control/HBoxContainer3/SubViewportContainer/cam3"]
+transform = Transform3D(1, 0, 0, 0, 0.8379, 0.545824, 0, -0.545824, 0.8379, 0, 0.782637, 1.66293)
+
+[node name="HBoxContainer4" type="HBoxContainer" parent="Control"]
+layout_mode = 0
+offset_left = 526.0
+offset_top = 519.0
+offset_right = 1038.0
+offset_bottom = 1031.0
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="Control/HBoxContainer4"]
+visible = false
+layout_mode = 2
+
+[node name="cam4" type="SubViewport" parent="Control/HBoxContainer4/SubViewportContainer"]
+unique_name_in_owner = true
+handle_input_locally = false
+render_target_clear_mode = 1
+render_target_update_mode = 0
+
+[node name="Camera3D" type="Camera3D" parent="Control/HBoxContainer4/SubViewportContainer/cam4"]
+transform = Transform3D(-1, 6.18172e-08, -6.18172e-08, 0, 0.707107, 0.707107, 8.74228e-08, 0.707107, -0.707107, 0, 0.782637, -1.2291)
+
+[node name="CameraFrameGetter" type="Node" parent="."]
+script = ExtResource("3_qry1m")
+
+[node name="TargetObject" type="Node3D" parent="."]
+visible = false
+
+[node name="l1" type="CSGSphere3D" parent="TargetObject"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.1, 0, 0)
+radius = 0.01
+material = SubResource("StandardMaterial3D_ba6xi")
+script = ExtResource("2_s0014")
+metadata/blink_frequency = 2.0
+metadata/blink_duty_cycle = 50.0
+metadata/blink_color = Vector3(1, 0, 0)
+
+[node name="SpotLight3D" type="SpotLight3D" parent="TargetObject/l1"]
+transform = Transform3D(1, -0.000392499, 2.88031e-05, -2.89049e-05, -0.000259231, 1, -0.000392491, -1, -0.000259242, 0, 0.0518097, 0)
+spot_range = 0.067
+spot_angle = 12.95
+
+[node name="l2" type="CSGSphere3D" parent="TargetObject"]
+transform = Transform3D(1, 3.46745e-12, 0, -1.7053e-13, 1, -5.82077e-11, 0, 0, 1, 0, 0, -0.1)
+radius = 0.01
+material = SubResource("StandardMaterial3D_efhyh")
+script = ExtResource("2_s0014")
+metadata/blink_color = Vector3(0, 1, 0)
+metadata/blink_frequency = 4.0
+metadata/blink_duty_cycle = 50.0
+
+[node name="SpotLight3D" type="SpotLight3D" parent="TargetObject/l2"]
+transform = Transform3D(1, -0.000392499, 2.88031e-05, -2.89049e-05, -0.000259231, 1, -0.000392491, -1, -0.000259242, 0, 0.0518097, 0)
+spot_range = 0.067
+spot_angle = 12.95
+
+[node name="l3" type="CSGSphere3D" parent="TargetObject"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.1)
+radius = 0.01
+material = SubResource("StandardMaterial3D_1p5wf")
+script = ExtResource("2_s0014")
+metadata/blink_color = Vector3(0, 0, 1)
+metadata/blink_frequency = 60.0
+metadata/blink_duty_cycle = 50.0
+
+[node name="SpotLight3D" type="SpotLight3D" parent="TargetObject/l3"]
+transform = Transform3D(1, -0.000392499, 2.88031e-05, -2.89049e-05, -0.000259231, 1, -0.000392491, -1, -0.000259242, 0, 0.0518097, 0)
+spot_range = 0.067
+spot_angle = 12.95
+
+[node name="l4" type="CSGSphere3D" parent="TargetObject"]
+transform = Transform3D(1, 3.46745e-12, 0, -1.7053e-13, 1, -5.82077e-11, 0, 0, 1, -0.1, 0, 0)
+radius = 0.01
+material = SubResource("StandardMaterial3D_1p5wf")
+script = ExtResource("2_s0014")
+metadata/blink_color = Vector3(0, 0, 1)
+metadata/blink_frequency = 60.0
+metadata/blink_duty_cycle = 50.0
+
+[node name="SpotLight3D" type="SpotLight3D" parent="TargetObject/l4"]
+transform = Transform3D(1, -0.000392499, 2.88031e-05, -2.89049e-05, -0.000259231, 1, -0.000392491, -1, -0.000259242, 0, 0.0518097, 0)
+spot_range = 0.067
+spot_angle = 12.95
+
+[node name="CSGCylinder3D" type="CSGCylinder3D" parent="TargetObject"]
+transform = Transform3D(-4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0, 1, -0.000867784, -0.06, 0)
+radius = 0.05
+height = 0.3
+material = SubResource("StandardMaterial3D_0t5m0")
+
+[node name="CSGCylinder3D2" type="CSGCylinder3D" parent="TargetObject"]
+transform = Transform3D(-0.0135608, -4.43001e-08, 0.999908, -0.999908, -4.31146e-08, -0.0135608, 4.37114e-08, -1, -4.37114e-08, 0, -0.0599999, 0)
+radius = 0.05
+height = 0.3
+material = SubResource("StandardMaterial3D_ww4nr")
+
+[node name="RefereceObject" type="Node3D" parent="."]
+transform = Transform3D(1, 3.46745e-12, 0, -1.7053e-13, 1, -1.74623e-10, 0, 0, 1, 0.000782039, 0.000516389, 0.672442)
+
+[node name="l1" type="CSGSphere3D" parent="RefereceObject"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.1, 0, 0)
+radius = 0.01
+material = SubResource("StandardMaterial3D_ba6xi")
+script = ExtResource("2_s0014")
+metadata/blink_frequency = 2.0
+metadata/blink_duty_cycle = 50.0
+metadata/blink_color = Vector3(1, 0, 0)
+
+[node name="SpotLight3D" type="SpotLight3D" parent="RefereceObject/l1"]
+transform = Transform3D(1, -0.000392499, 2.88031e-05, -2.89049e-05, -0.000259231, 1, -0.000392491, -1, -0.000259242, 0, 0.0518097, 0)
+spot_range = 0.067
+spot_angle = 12.95
+
+[node name="l2" type="CSGSphere3D" parent="RefereceObject"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.1)
+radius = 0.01
+material = SubResource("StandardMaterial3D_efhyh")
+script = ExtResource("2_s0014")
+metadata/blink_color = Vector3(0, 1, 0)
+metadata/blink_frequency = 4.0
+metadata/blink_duty_cycle = 50.0
+
+[node name="SpotLight3D" type="SpotLight3D" parent="RefereceObject/l2"]
+transform = Transform3D(1, -0.000392499, 2.88031e-05, -2.89049e-05, -0.000259231, 1, -0.000392491, -1, -0.000259242, 0, 0.0518097, 0)
+spot_range = 0.067
+spot_angle = 12.95
+
+[node name="l3" type="CSGSphere3D" parent="RefereceObject"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.1)
+radius = 0.01
+material = SubResource("StandardMaterial3D_1p5wf")
+script = ExtResource("2_s0014")
+metadata/blink_color = Vector3(0, 0, 1)
+metadata/blink_frequency = 60.0
+metadata/blink_duty_cycle = 50.0
+
+[node name="SpotLight3D" type="SpotLight3D" parent="RefereceObject/l3"]
+transform = Transform3D(1, -0.000392499, 2.88031e-05, -2.89049e-05, -0.000259231, 1, -0.000392491, -1, -0.000259242, 0, 0.0518097, 0)
+spot_range = 0.067
+spot_angle = 12.95
+
+[node name="l4" type="CSGSphere3D" parent="RefereceObject"]
+transform = Transform3D(1, 3.46745e-12, 0, 0, 1, -1.16415e-10, 0, 0, 1, -0.1, 0, 0)
+radius = 0.01
+material = SubResource("StandardMaterial3D_1p5wf")
+script = ExtResource("2_s0014")
+metadata/blink_color = Vector3(0, 0, 1)
+metadata/blink_frequency = 10.0
+metadata/blink_duty_cycle = 50.0
+
+[node name="SpotLight3D" type="SpotLight3D" parent="RefereceObject/l4"]
+transform = Transform3D(1, -0.000392499, 2.88031e-05, -2.89049e-05, -0.000259231, 1, -0.000392491, -1, -0.000259242, 0, 0.0518097, 0)
+spot_range = 0.067
+spot_angle = 12.95
+
+[node name="CSGCylinder3D" type="CSGCylinder3D" parent="RefereceObject"]
+transform = Transform3D(-4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0, 1, -0.000867784, -0.06, 0)
+radius = 0.05
+height = 0.3
+material = SubResource("StandardMaterial3D_0t5m0")
+
+[node name="CSGCylinder3D2" type="CSGCylinder3D" parent="RefereceObject"]
+transform = Transform3D(-0.0135608, -4.43001e-08, 0.999908, -0.999908, -4.31146e-08, -0.0135608, 4.37114e-08, -1, -4.37114e-08, 0, -0.0599999, 0)
+radius = 0.05
+height = 0.3
+material = SubResource("StandardMaterial3D_ww4nr")
